@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HandRide — Gesture Controlled Bike Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- MediaPipe CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- ── LOADING SCREEN ── -->
+  <div id="loadScreen">
+    <div class="load-inner">
+      <div class="load-logo">HAND<span>RIDE</span></div>
+      <div class="load-bar-wrap"><div class="load-bar" id="loadBar"></div></div>
+      <div class="load-msg" id="loadMsg">Initialising engine…</div>
+    </div>
+  </div>
+
+  <!-- ── MAIN MENU ── -->
+  <div id="menuScreen" class="hidden">
+    <div class="menu-bg-grid"></div>
+    <div class="menu-content">
+      <h1 class="game-title">HAND<span>RIDE</span></h1>
+      <p class="game-sub">Control the bike with your bare hands</p>
+      <div class="gesture-guide">
+        <div class="gesture-card">
+          <div class="gesture-icon">✋</div>
+          <div class="gesture-label">Tilt palm<br>LEFT / RIGHT</div>
+          <div class="gesture-action">Steer</div>
+        </div>
+        <div class="gesture-card">
+          <div class="gesture-icon">✊</div>
+          <div class="gesture-label">Make a<br>FIST</div>
+          <div class="gesture-action">Brake</div>
+        </div>
+        <div class="gesture-card">
+          <div class="gesture-icon">🤚</div>
+          <div class="gesture-label">All fingers<br>UP</div>
+          <div class="gesture-action">BOOST</div>
+        </div>
+      </div>
+      <button id="startBtn" class="btn-primary">ENABLE CAMERA & START</button>
+      <p class="cam-note">Camera permission required for hand tracking</p>
+    </div>
+  </div>
+
+  <!-- ── GAME SCREEN ── -->
+  <div id="gameScreen" class="hidden">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Webcam + hand overlay -->
+    <div id="camBox">
+      <video id="webcam" autoplay playsinline muted></video>
+      <canvas id="handCanvas"></canvas>
+      <div id="gestureTag">–</div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div class="hud-block">
+        <span class="hud-label">SCORE</span>
+        <span class="hud-val" id="hudScore">0</span>
+      </div>
+      <div class="hud-block">
+        <span class="hud-label">SPEED</span>
+        <span class="hud-val" id="hudSpeed">0 <small>km/h</small></span>
+      </div>
+      <div class="hud-block">
+        <span class="hud-label">LIVES</span>
+        <span class="hud-val" id="hudLives">♥ ♥ ♥</span>
+      </div>
+    </div>
+
+    <!-- Steer indicator -->
+    <div id="steerBar">
+      <div id="steerTrack"><div id="steerKnob"></div></div>
+      <span class="steer-label">STEER</span>
+    </div>
+  </div>
+
+  <!-- ── GAME OVER ── -->
+  <div id="gameOverScreen" class="hidden">
+    <div class="go-card">
+      <div class="go-title">GAME OVER</div>
+      <div class="go-score-label">YOUR SCORE</div>
+      <div class="go-score" id="goScore">0</div>
+      <div class="go-best">BEST: <span id="goBest">0</span></div>
+      <button id="replayBtn" class="btn-primary">PLAY AGAIN</button>
+      <button id="menuBtn" class="btn-secondary">MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- JS modules -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
