@@ -105,7 +105,7 @@ npx serve .
 
 Deployed on Netlify — just open the link, allow camera, and play. No installation whatsoever.
 
-> 🔗 **[Play HandRide Live →](#)**  *(replace with your Netlify URL)*
+> 🔗 **[Play HandRide Live →](#)**  (https://neurorash.netlify.app/)
 
 ---
 
